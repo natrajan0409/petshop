@@ -1,0 +1,129 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2022-07-25T04:16:58.177Z",
+        "before": [
+          {
+            "result": {
+              "duration": 2196346200,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepdefinition.masterHook.setup()"
+            }
+          }
+        ],
+        "line": 15,
+        "name": "Register  new user if username and password not present in config file",
+        "description": "",
+        "id": "create-a-new-user-if-username-and-password-not-prsent-in-config-file.;register--new-user-if-username-and-password-not-present-in-config-file;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 320135700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepdefinition.masterHook.teardownScreenshot(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 2354426700,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "user Nagivate to Sign page",
+            "match": {
+              "location": "stepdefinition.signinstep.user_Nagivate_to_Sign_page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 321197500,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "Click on Register NOw button",
+            "match": {
+              "location": "stepdefinition.signinstep.click_on_Register_NOw_button()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 132029900,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "User information page displayed",
+            "match": {
+              "location": "stepdefinition.signinstep.user_information_page_displayed()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 2229028500,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Enter Required information \"Register\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Register\"",
+                  "offset": 27
+                }
+              ],
+              "location": "stepdefinition.signinstep.enter_Required_information(java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 43009500,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "Click save  account information Button",
+            "match": {
+              "location": "stepdefinition.signinstep.click_save_account_information_Button()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@signin"
+          },
+          {
+            "name": "@signin1"
+          }
+        ]
+      }
+    ],
+    "name": "Create a new user if username and password not prsent in config file.",
+    "description": "",
+    "id": "create-a-new-user-if-username-and-password-not-prsent-in-config-file.",
+    "keyword": "Feature",
+    "uri": "file:src/test/java/petshop/feature/signin.feature",
+    "tags": [
+      {
+        "name": "@signin",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    ]
+  }
+]
