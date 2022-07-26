@@ -10,7 +10,7 @@ import utils.browserfactore;
 import utils.readconfig;
 
 public class homepage extends browserfactore {
-	readconfig conf = new readconfig();
+	readconfig conf = new readconfig("src\\main\\java\\Config\\Config.properties");
 
 	private By jstoreHomeTitle = By.xpath("//div[@id='Content']//h2");
 	private By enterStore = By.linkText("Enter the Store");

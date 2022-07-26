@@ -32,13 +32,13 @@ public class masterHook extends browserfactore {
 			if (driver!=null&&scenario.isFailed() ) {
 //				scenario.embed(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES),ScreenshotName);
 				driver.manage().deleteAllCookies();
-				driver.quit();
+//				driver.quit();
 				driver=null;
 			}
 			if(driver!=null) {
 				
 				driver.manage().deleteAllCookies();
-				driver.quit();
+//				driver.quit();
 				driver=null;
 			}
 		} catch (Exception e) {

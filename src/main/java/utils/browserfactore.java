@@ -11,7 +11,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class browserfactore {
 
-	public readconfig config= new readconfig();
+	public readconfig config= new readconfig("src\\main\\java\\Config\\Config.properties");
     public static WebDriver driver;
 	public WebDriver getdriver() {
 //		String browserpath =System.getProperty("user.dir")+"//src//test//resources//driver//chromedriver.exe";	

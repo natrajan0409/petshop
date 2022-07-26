@@ -7,9 +7,9 @@ import java.util.Properties;
 public class readconfig  {
 	protected FileInputStream fis =null;
 	protected Properties prop =null;
-	public String path ="src\\main\\java\\Config\\Config.properties";
+//	public String path ="src\\main\\java\\Config\\Config.properties";
 	
-	public readconfig() {
+	public readconfig(String path) {
 	try {
 // 		ReadConfirfile.class.getClassLoader().getSystemResourceAsStream("src\\main\\java\\Properties\\config.properties");
  		prop=new Properties();

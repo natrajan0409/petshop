@@ -11,7 +11,7 @@ glue= {"stepdefinition"},
 monochrome=true,
 dryRun=false,
 
-tags= "@signin1",
+tags= "@loginuser",
 plugin= {"pretty","html:target/site/cucumber-pretty","json:target/cucumber.json"})
 
 public class Testrunner   {

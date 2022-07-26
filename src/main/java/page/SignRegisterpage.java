@@ -9,23 +9,21 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.browserfactore;
 import utils.excelReader;
 import utils.readconfig;
+import utils.utils;
 import utils.writeconfig;
 
 public class SignRegisterpage extends browserfactore {
 
 	public excelReader excel = new excelReader();
-	public readconfig config = new readconfig();
+	public readconfig config = new readconfig("src\\main\\java\\Config\\Config.properties");
 	public String path = config.excelpath();
-	public writeconfig writeconfig = new writeconfig();
+	public utils util= new utils();
 
 	private By uName = By.xpath("//input[@name='username']");
 	private By uPass = By.xpath("//input[@name='password']");
@@ -50,7 +48,7 @@ public class SignRegisterpage extends browserfactore {
 	private By acc_Zip = By.xpath("//input[@name='account.zip']");
 	private By enableMyLst = By.xpath("//*[@name='account.listOption']");
 	private By enableMyBanner = By.xpath("//*[@name='account.bannerOption']");
-	private By saveAccinfo = By.xpath("//*[@name='account.bannerOption']");
+	private By saveAccinfo = By.xpath("//*[@name='newAccount'and @type='submit']");
 
 	// dropdown handles
 	String langPrefer = "//*[@name='account.languagePreference']";
@@ -94,6 +92,10 @@ public class SignRegisterpage extends browserfactore {
 	public void clickloginButton() {
 		driver.findElement(loginBtn).click();
 	}
+	
+//	public void isDisplayedLoginButton() {
+//		assertTrue(driver.findElement(loginBtn).isDisplayed());
+//	}
 
 	public void clickRegisterNowlink() {
 		driver.findElement(registorlink).click();
@@ -137,6 +139,7 @@ public class SignRegisterpage extends browserfactore {
 	}
 
 	public void enterAccountInformation(String sheetname) throws InvalidFormatException, IOException {
+		writeconfig wrconfig = new writeconfig();
 		List<Map<String, String>> getdata = excel.getData(path, sheetname);
 		int row = excel.getrowcount(path, sheetname)-1;
 //		int row=0;
@@ -166,23 +169,23 @@ public class SignRegisterpage extends browserfactore {
 		enterState(state);
 		enterzipCode(zip);
 		entercountry(country);
-//        util.selectmethod(langPrefer, "english");
-		Select dropdown = new Select(driver.findElement(By.xpath(langPrefer)));
-		dropdown.selectByVisibleText("english");
-
-		Select dropdown1 = new Select(driver.findElement(By.xpath(favCatg)));
-		dropdown1.selectByVisibleText("DOGS");
-//        util.selectmethod(favCatg, "DOGS");
+		util.selectdropdownByValue(driver.findElement(By.xpath(langPrefer)), "english");
+		util.selectdropdownByValue(driver.findElement(By.xpath(favCatg)), "DOGS");
 		driver.findElement(enableMyLst).click();
 		driver.findElement(enableMyBanner).click();
-
-		writeconfig.username(username);
-		writeconfig.password(newpass);
+		wrconfig.usernameAndPassword(username,newpass);
+		
 
 	}
 
 	public void clicksaveinformation() {
 		driver.findElement(saveAccinfo).click();
+	}
+	
+	public void enterUsernameAndPassword() {
+		readconfig config2 = new readconfig("src\\main\\java\\config\\userdetail.properties");
+		enterusername(config2.username());
+		enterpassword(config2.password());
 	}
 
 }
