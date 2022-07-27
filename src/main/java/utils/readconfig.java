@@ -61,7 +61,14 @@ public class readconfig  {
 	}
 	
 	
-	
+	public String getLoginURL() {
+		if(prop.getProperty("LoginURl")==null)
+		{
+			return "";
+			
+		}
+		return prop.getProperty("LoginURl");
+	}
 	
 	public String excelpath() {
 		if(prop.getProperty("Excelpath")==null)

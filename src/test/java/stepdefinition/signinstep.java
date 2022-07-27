@@ -14,7 +14,8 @@ import page.homepage;
 public class signinstep {
 	homepage home = new homepage();
 	SignRegisterpage signin = new SignRegisterpage();
-	ProductListPage  productpg= new ProductListPage();
+	ProductListPage productpg = new ProductListPage();
+
 	@Given("user Nagivate to Sign page")
 	public void user_Nagivate_to_Sign_page() {
 		home.enterJpetshoptURL();
@@ -22,22 +23,23 @@ public class signinstep {
 		home.clickEntertTheStore();
 		home.isDisplayedSignHDR();
 		home.clickOnSignIn();
-//		signin.isDisplayedLoginPage();
 	}
-
 
 	@When("Click on Register NOw button")
 	public void click_on_Register_NOw_button() {
 		signin.clickRegisterNowlink();
 	}
+
 	@Then("User information page displayed")
 	public void user_information_page_displayed() {
 		signin.isDisplayedRegistrationpage();
 	}
+
 	@Then("Enter Required information {string}")
 	public void enter_Required_information(String sheetName) throws InvalidFormatException, IOException {
 		signin.enterAccountInformation(sheetName);
 	}
+
 	@Then("Click save account information Button")
 	public void click_save_account_information_Button() {
 		signin.clicksaveinformation();
@@ -57,9 +59,20 @@ public class signinstep {
 	public void user_landed_on_product_page() {
 		productpg.isDisplayedproductpage();
 	}
-	
+
 	@Given("Login page displayed")
 	public void login_Page_Displayed() {
+		signin.enterJpetshopLogintURL();
 		signin.isDisplayedLoginPage();
+	}
+	
+	@When("select the required product")
+	public void select_the_required_product() {
+	   
+	}
+
+	@When("Add the item to cart")
+	public void add_the_item_to_cart() {
+	   
 	}
 }

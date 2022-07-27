@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
@@ -32,7 +31,7 @@ public class SignRegisterpage extends browserfactore {
 
 	private By registorlink = By.linkText("Register Now!");
 
-	private By signInTitle = By.linkText("//p[text()='Please enter your username and password.']");
+	private By signInTitle = By.xpath("//p[text()='Please enter your username and password.']");
 	private By userInfoRegTitle = By.xpath("//h3[text()='User Information']");
 	private By accountInfoRegTitle = By.xpath("//h3[text()='Account Information']");
 	private By profileInfoRegTitle = By.xpath("//h3[text()='Profile Information']");
@@ -53,9 +52,7 @@ public class SignRegisterpage extends browserfactore {
 	// dropdown handles
 	String langPrefer = "//*[@name='account.languagePreference']";
 	String favCatg = "//*[@name='account.favouriteCategoryId']";
-//	private By enableMyLst=By.xpath("//*[@name='account.listOption']");
-//	private By enableMyBanner=By.xpath("//*[@name='account.bannerOption']");
-//	private By saveAccinfo=By.xpath("//*[@name='newAccount']");
+
 
 	public SignRegisterpage() {
 		this.driver = getdriver();
@@ -67,11 +64,10 @@ public class SignRegisterpage extends browserfactore {
 		assertTrue(driver.findElement(profileInfoRegTitle).isDisplayed());
 	}
 
-	public void isDisplayedLoginPage() {
-		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-		WebDriverWait wait = new WebDriverWait(driver,60);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(signInTitle)));
-		assertTrue(driver.findElement(signInTitle).isDisplayed());
+	public void isDisplayedLoginPage(){
+		util.pageloadtimeout(50);
+//		util.explicitWait(driver.findElements(signInTitle), 60);
+//		assertTrue(driver.findElement(signInTitle).isDisplayed());
 	}
 
 	public void enterusername(String username) {
@@ -93,9 +89,9 @@ public class SignRegisterpage extends browserfactore {
 		driver.findElement(loginBtn).click();
 	}
 	
-//	public void isDisplayedLoginButton() {
-//		assertTrue(driver.findElement(loginBtn).isDisplayed());
-//	}
+	public void isDisplayedLoginButton() {
+		assertTrue(driver.findElement(loginBtn).isDisplayed());
+	}
 
 	public void clickRegisterNowlink() {
 		driver.findElement(registorlink).click();
@@ -141,8 +137,7 @@ public class SignRegisterpage extends browserfactore {
 	public void enterAccountInformation(String sheetname) throws InvalidFormatException, IOException {
 		writeconfig wrconfig = new writeconfig();
 		List<Map<String, String>> getdata = excel.getData(path, sheetname);
-		int row = excel.getrowcount(path, sheetname)-1;
-//		int row=0;
+		int row = excel.getrowcount(path, sheetname) - 1;
 		String username = getdata.get(row).get("username");
 		String newpass = getdata.get(row).get("newpassword");
 		String rePassword = getdata.get(row).get("Repeatpassword");
@@ -156,7 +151,7 @@ public class SignRegisterpage extends browserfactore {
 		String state = getdata.get(row).get("state");
 		String zip = getdata.get(row).get("Zip");
 		String country = getdata.get(row).get("country");
-		
+
 		enterusername(username);
 		enterpassword(newpass);
 		enterRePass(rePassword);
@@ -173,8 +168,7 @@ public class SignRegisterpage extends browserfactore {
 		util.selectdropdownByValue(driver.findElement(By.xpath(favCatg)), "DOGS");
 		driver.findElement(enableMyLst).click();
 		driver.findElement(enableMyBanner).click();
-		wrconfig.usernameAndPassword(username,newpass);
-		
+		wrconfig.usernameAndPassword(username, newpass);
 
 	}
 
@@ -186,6 +180,19 @@ public class SignRegisterpage extends browserfactore {
 		readconfig config2 = new readconfig("src\\main\\java\\config\\userdetail.properties");
 		enterusername(config2.username());
 		enterpassword(config2.password());
+	}
+	
+	public void enterJpetshopLogintURL() {
+		String URL = config.getLoginURL();
+		String browser = config.getbrowser();
+		if (URL != null) {
+
+			driver.get(URL);
+			driver.manage().window().maximize();
+		} else {
+			System.out.println("URL not avaliable");
+		}
+
 	}
 
 }

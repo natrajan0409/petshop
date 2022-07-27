@@ -9,14 +9,13 @@ import java.io.OutputStream;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
-import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-
+import io.cucumber.java.Scenario;
 import utils.browserfactore;
 
 public class masterHook extends browserfactore {
@@ -30,15 +29,20 @@ public class masterHook extends browserfactore {
 	public void teardownScreenshot(Scenario scenario) {
 		try {
 			if (driver!=null&&scenario.isFailed() ) {
-//				scenario.embed(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES),ScreenshotName);
+				
+//				scenario.attach(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES),ScreenshotName, ScreenshotName);
+				capturescreenshot();
 				driver.manage().deleteAllCookies();
-//				driver.quit();
+				driver.quit();
 				driver=null;
+			}
+			else if (driver==null) {
+				driver.quit();
 			}
 			if(driver!=null) {
 				
 				driver.manage().deleteAllCookies();
-//				driver.quit();
+				driver.quit();
 				driver=null;
 			}
 		} catch (Exception e) {
@@ -55,10 +59,6 @@ public class masterHook extends browserfactore {
 		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		ScreenshotName=retrunDateStamp(".jpg");
 		FileUtils.copyFile(src, new File(System.getProperty("user.dir")+"\\output\\image"+ScreenshotName));
-//		Reporter.addSteplog("Taking a screenshot!");
-//		Reporter.addSteplog("<br>");
-		
-		
 	}
 	
 	private  static void copyfileusingStream(File source,File dest) throws IOException {
