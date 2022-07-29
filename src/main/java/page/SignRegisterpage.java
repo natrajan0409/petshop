@@ -180,6 +180,7 @@ public class SignRegisterpage extends browserfactore {
 		readconfig config2 = new readconfig("src\\main\\java\\config\\userdetail.properties");
 		enterusername(config2.username());
 		enterpassword(config2.password());
+		
 	}
 	
 	public void enterJpetshopLogintURL() {

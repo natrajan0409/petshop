@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class utils extends browserfactore  {
 public WebDriver driver;
 	
+@FindBy(xpath = "//a[@class='Button' and text()='Add to Cart']")
+public WebElement addTocart;
 
 public utils(){
 this.driver = getdriver();
@@ -39,6 +43,17 @@ public void explicitWait(List<WebElement> element,int value) {
 	}
 }
 
+
+public void Action(WebElement element) {
+
+	try {
+		Actions action = new Actions(driver);
+		action.moveToElement(element).build().perform();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 
 public void pageloadtimeout(int loadingtime) {
 	driver.manage().timeouts().pageLoadTimeout(loadingtime, TimeUnit.SECONDS);

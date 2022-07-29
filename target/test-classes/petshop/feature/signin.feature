@@ -25,8 +25,8 @@ Then user landed on product page
 @signin1
 Scenario: login with exising user and added product to cart 
 Given Login page displayed
-#When Enter username and password 
-#And click login button
+When Enter username and password 
+And click login button
 And select the required product
 And  Add the item to cart 
 
