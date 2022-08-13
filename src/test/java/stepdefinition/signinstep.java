@@ -9,11 +9,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import page.ProductListPage;
 import page.SignRegisterpage;
+import page.cartpage;
 import page.homepage;
 
 public class signinstep {
 	homepage home = new homepage();
 	SignRegisterpage signin = new SignRegisterpage();
+	cartpage cart = new cartpage();
 	ProductListPage productpg = new ProductListPage();
 
 	@Given("user Nagivate to Sign page")
@@ -62,17 +64,29 @@ public class signinstep {
 
 	@Given("Login page displayed")
 	public void login_Page_Displayed() {
-		signin.enterJpetshopLogintURL();
+
 		signin.isDisplayedLoginPage();
 	}
-	
-	@When("select the required product")
-	public void select_the_required_product() {
-	   
+
+	@When("select product based on user requirement {string}")
+	public void select_product_based_on_user_requirement(String producttype) {
+	productpg.selectproducttypes(producttype);
+
+	}
+
+	@When("Select Product based on user required product Types  {string} and {string}")
+	public void select_product_based_on_user_required_product_types_and(String product, String subproduct) {
+		System.out.printf(product, subproduct);
+		cart.selectproduct(product, subproduct);
+	}
+
+	@When("Select Product sub category   based on requirement {string} {string} and {string}")
+	public void select_product_sub_category_based_on_requirement_and(String product,String subproduct, String sub_category) {
+		cart.selectproductsubcategory(product,subproduct,sub_category);
 	}
 
 	@When("Add the item to cart")
 	public void add_the_item_to_cart() {
-	   
+		cart.addTocart();
 	}
 }

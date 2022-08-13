@@ -1,17 +1,31 @@
 package runner;
-import org.junit.runner.RunWith;
+import java.io.File;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.DataProvider;
 
-@RunWith(Cucumber.class)
+import com.cucumber.listener.Reporter;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+
 @CucumberOptions(features ="src/test/java/petshop/feature",
-glue= {"stepdefinition"},
+glue= "stepdefinition",
 monochrome=true,
 dryRun=false,
-tags= "@signin1",
-plugin= {"pretty","html:target/site/cucumber-pretty","json:target/cucumber.json"})
+tags= "@smoke",
+plugin= {"pretty","html:target/site/cucumber-pretty",
+		"json:target/cucumber.json","rerun:target/failedtestcase.txt",
+		"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html",})
 
-public class Testrunner   {
-	
+public class Testrunner extends  AbstractTestNGCucumberTests {
+	@Override
+	@DataProvider(parallel=false)
+	public Object[][]scenarios(){
+		return super.scenarios();
+	}
+	@AfterClass
+    public static void writeExtentReport() {
+        Reporter.loadXMLConfig(new File("config/report.xml"));
+    } 
 }

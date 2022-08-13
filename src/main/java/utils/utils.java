@@ -3,6 +3,7 @@ package utils;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -41,6 +42,11 @@ public void explicitWait(List<WebElement> element,int value) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+}
+
+
+public void click(By object) {
+	driver.findElement(object).clear();
 }
 
 

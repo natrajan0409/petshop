@@ -9,15 +9,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<junit.version>4.13.2</junit.version>
-		<cucumber.version>7.4.1</cucumber.version>
+		<cucumber.version>7.6.0</cucumber.version>
 		<maven.compiler.version>3.8.1</maven.compiler.version>
-		<maven.surefire.version>2.22.2</maven.surefire.version>
+		<maven.surefire.version>2.12.4</maven.surefire.version>
 
 	</properties>
 
 
 	<dependencies>
-	<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java8 -->
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java8 -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-core</artifactId>
@@ -65,14 +65,25 @@
 			<version>6.14.3</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm-deps -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber.version}</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm-deps -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-jvm-deps</artifactId>
+			<version>1.0.6</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -91,6 +102,32 @@
 			<artifactId>webdrivermanager</artifactId>
 			<version>4.4.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>5.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vimalselvam</groupId>
+			<artifactId>cucumber-extentsreport</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -119,9 +156,36 @@
 					<parallel>methods</parallel>
 					<threadCount>4</threadCount>
 					<useUnlimitedThreads>false</useUnlimitedThreads>
+					<suiteXmlFiles>
+						<suiteXmlFile>petshop/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<includes>
+						<include> runner.Testrunner.java</include>
+					</includes>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
 				</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>net.masterthough</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>3.15.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<project>petshop</project>
+							<outputDirectory>target/cucumber-reports/advance-reports</outputDirectory>
+							<buildNumber>1</buildNumber>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-failsafe-plugin</artifactId> 
 				<version>3.0.0-M3</version> <executions> <execution> <goals> <goal>integration-test</goal> 
 				</goals> <configuration> UNCOMMENT - To add any exclusions if required <excludes> 

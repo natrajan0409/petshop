@@ -76,6 +76,7 @@ public class SignRegisterpage extends browserfactore {
 	}
 
 	public void enterpassword(String password) {
+		driver.findElement(uPass).clear();
 		driver.findElement(uPass).sendKeys(password);
 
 	}
@@ -179,21 +180,8 @@ public class SignRegisterpage extends browserfactore {
 	public void enterUsernameAndPassword() {
 		readconfig config2 = new readconfig("src\\main\\java\\config\\userdetail.properties");
 		enterusername(config2.username());
+		System.out.println(config2.password());
 		enterpassword(config2.password());
 		
 	}
-	
-	public void enterJpetshopLogintURL() {
-		String URL = config.getLoginURL();
-		String browser = config.getbrowser();
-		if (URL != null) {
-
-			driver.get(URL);
-			driver.manage().window().maximize();
-		} else {
-			System.out.println("URL not avaliable");
-		}
-
-	}
-
 }

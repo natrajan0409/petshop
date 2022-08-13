@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -14,45 +15,45 @@ import utils.utils;
 public class ProductListPage  extends browserfactore {
 	public utils util= new utils();
 	public excelReader excel = new excelReader();
-	@FindBy(linkText="../images/fish_icon.gif")
-	WebElement fish;
-	@FindBy(linkText="../images/dogs_icon.gif")
-	WebElement dogs;
-	@FindBy(linkText="../images/cats_icon.gif")
-	WebElement cats;
-	@FindBy(linkText="../images/reptiles_icon.gif")
-	WebElement reptiles;
-	@FindBy(linkText="../images/birds_icon.gif")
-	WebElement birds;	
+	private By  fish=By.xpath("//img[@src='../images/fish_icon.gif']");
+	private By  dogs=By.xpath("//img[@src='../images/dogs_icon.gif']");
+	private By cats=By.xpath("//img[@src='../images/cats_icon.gif']");
+	private By reptiles =By.xpath("//img[@src='../images/reptiles_icon.gif']");
+	private By birds =By.xpath("//img[@src='../images/birds_icon.gif']");
+	
 
 	public ProductListPage() {
 		this.driver=getdriver();
 	}
 	
 	public void isDisplayedproductpage() {
-		assertTrue(fish.isDisplayed());
+		boolean result =driver.findElement(fish).isDisplayed();
+		assertTrue(result);
 	}
 	
 	public void selectproducttypes(String producttype)
 	{
-		if(producttype=="Fish") {
+		if(producttype.equals("FISH")) {
 			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-			fish.click();
-		}else if(producttype=="Dogs") {
+			driver.findElement(fish).click();
+			
+		}else if(producttype.equals("Dogs")) {
 			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-			dogs.click();
+			driver.findElement(dogs).click();
+		
 			}
-		else if(producttype=="reptiles") {
+		else if(producttype.equals("reptiles")) {
 			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-			reptiles.click();
+			driver.findElement(reptiles).click();
+			
 			}
-		else if(producttype=="cats") {
+		else if(producttype.equals("cats")) {
 			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-			cats.click();
+			driver.findElement(cats).click();
 			}
-		else if(producttype=="birds") {
+		else if(producttype.equals("birds")) {
 			driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-			birds.click();
+			driver.findElement(birds).click();
 			}
 	}
 	

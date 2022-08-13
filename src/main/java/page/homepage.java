@@ -8,10 +8,11 @@ import org.openqa.selenium.By;
 
 import utils.browserfactore;
 import utils.readconfig;
+import utils.utils;
 
 public class homepage extends browserfactore {
 	readconfig conf = new readconfig("src\\main\\java\\Config\\Config.properties");
-
+	public utils util= new utils();
 	private By jstoreHomeTitle = By.xpath("//div[@id='Content']//h2");
 	private By enterStore = By.linkText("Enter the Store");
 	private By  signin = By.linkText("Sign In");
@@ -37,20 +38,20 @@ public class homepage extends browserfactore {
 		driver.findElement(enterStore).click();
 	}
 	public void clickOnSignIn() {
-		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+		util.pageloadtimeout(60);
 		driver.findElement(signin).click();
 	}
 
-	public void enterJpetshoptURL() {
+	public void enterJpetshoptURL( ) {
+		
 		String URL = conf.getURL();
-		String browser = conf.getbrowser();
 		if (URL != null) {
 
 			driver.get(URL);
 			driver.manage().window().maximize();
 		} else {
 			System.out.println("URL not avaliable");
-		}
+				}
 
 	}
 }

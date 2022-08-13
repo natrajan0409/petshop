@@ -1,4 +1,4 @@
-@jpethome1
+@jpethome1 @smoke
 Feature: Go to  the Jpetstore   user landed on Welcome to JPetStore 6
 
 @jpethome
