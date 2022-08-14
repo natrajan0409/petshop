@@ -197,8 +197,6 @@
 				UNCOMMENT BELOW 3 LINES - To execute using forking or combination option 
 				<forkCount>2</forkCount> <reuseForks>true</reuseForks> <reportsDirectory>${project.build.directory}/failsafe-reports_${surefire.forkNumber}</reportsDirectory> 
 				</configuration> </execution> </executions> </plugin> -->
-
-
 		</plugins>
 	</build>
 </project>
