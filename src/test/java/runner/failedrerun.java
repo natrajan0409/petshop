@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions;
 dryRun=false,
 monochrome=true,
 plugin= {"pretty","rerun:target1/failedtestcase.txt","junit:tagre1/cucumber.xml"}
-,glue= {"src\\test\\java\\Stepsdef"})
+,glue= "stepdefinition")
 
 public class failedrerun {
 

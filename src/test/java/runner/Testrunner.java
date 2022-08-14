@@ -16,7 +16,8 @@ dryRun=false,
 tags= "@smoke",
 plugin= {"pretty","html:target/site/cucumber-pretty",
 		"json:target/cucumber.json","rerun:target/failedtestcase.txt",
-		"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html",})
+		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+		"ne:test-output-thread/"})
 
 public class Testrunner extends  AbstractTestNGCucumberTests {
 	@Override
@@ -26,6 +27,6 @@ public class Testrunner extends  AbstractTestNGCucumberTests {
 	}
 	@AfterClass
     public static void writeExtentReport() {
-        Reporter.loadXMLConfig(new File("config/report.xml"));
+        Reporter.loadXMLConfig(new File("config/extent-config.xml"));
     } 
 }

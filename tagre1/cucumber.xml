@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="9.552">
+    <testcase classname="Create a new user if username and password not prsent in config file." name="login with exising user and added product to cart" time="9.314">
+        <system-out><![CDATA[Given user Nagivate to Sign page............................................passed
+When Enter username and password............................................passed
+And click login button......................................................passed
+And select product based on user requirement "FISH".........................passed
+And Select Product based on user required product Types  "FISH" and "Koi"...passed
+And Select Product sub category   based on requirement "FISH" "Koi" and "Spotted Koi".passed
+And Add the item to cart....................................................passed
+And click on Proceed to checkout btn........................................passed
+Then Payment page Displayed.................................................passed
+When Click on contiune btn..................................................passed
+And Click on confirm........................................................passed
+Then they can see order submitted msg.......................................passed
+When Click on Signout btn...................................................passed
+Then user landed on product page............................................passed
+]]></system-out>
+    </testcase>
+</testsuite>
